@@ -1,0 +1,33 @@
+{
+    "name": "joelbutcher/php-optional",
+    "description": "An opinionated implementation of Java's Optional class for PHP.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joel Butcher",
+            "email": "joel@joelbutcher.co.uk"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2",
+        "vimeo/psalm": "^4.30",
+        "azjezz/psl": "^1.9|^2.1"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.22",
+        "phpstan/phpstan": "^1.9",
+        "laravel/pint": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "JoelButcher\\PhpOptional\\": "src/",
+            "JoelButcher\\PhpOptional\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
