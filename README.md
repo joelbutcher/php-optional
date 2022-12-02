@@ -1,5 +1,18 @@
 # PHP Optional
 
+<a href="https://github.com/joelbutcher/php-optional/actions">
+    <img src="https://github.com/joelbutcher/php-optional/workflows/tests/badge.svg" alt="Build Status">
+</a>
+<a href="https://packagist.org/packages/joelbutcher/php-optional">
+    <img src="https://img.shields.io/packagist/dt/joelbutcher/php-optional" alt="Total Downloads">
+</a>
+<a href="https://packagist.org/packages/joelbutcher/php-optional">
+    <img src="https://img.shields.io/packagist/v/joelbutcher/php-optional" alt="Latest Stable Version">
+</a>
+<a href="https://packagist.org/packages/joelbutcher/php-optional">
+    <img src="https://img.shields.io/packagist/l/joelbutcher/php-optional" alt="License">
+</a>
+
 Inspired by Java's [Optional](https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/master/src/java.base/share/classes/java/util/function/Predicate.java) class, this package aims to provide a comprehensive API
 for optional field values.
 
