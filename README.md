@@ -13,6 +13,8 @@
     <img src="https://img.shields.io/packagist/l/joelbutcher/php-optional" alt="License">
 </a>
 
+## Introduction
+
 Inspired by Java's [Optional](https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/master/src/java.base/share/classes/java/util/function/Predicate.java) class, this package aims to provide a comprehensive API
 for optional field values.
 
@@ -22,7 +24,7 @@ You can use the `Optional` class in a variety of ways, see below for a few examp
 
 ### Updating a user's profile
 
-The below class indicates who this package may be used to update a users profile information. All fields are optional, because
+The below class indicates how this package may be used to update a users profile information. All fields are optional, because
 our user may not want to update all fields.
 
 ```php
