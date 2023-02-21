@@ -29,27 +29,30 @@ final class Optional implements \Stringable
      * @template T
      *
      * @param  T  $value
+     * @param  TypeInterface<T>|null  $type
      * @return Optional<T>
      */
-    public static function for(mixed $value): self
+    public static function for(mixed $value, ?TypeInterface $type = null): self
     {
-        return new self(true, $value);
+        return new self(
+            true,
+            is_null($type) ? $value : $type->coerce($value)
+        );
     }
 
     /**
      * @template T
      *
      * @param  T|null  $value
-     * @return Optional<T>|Optional<null>
+     * @param  TypeInterface<T>|null  $type
+     * @return Optional<T|null>
      */
-    public static function forNullable(mixed $value = null): self
+    public static function forNullable(mixed $value = null, ?TypeInterface $type = null): self
     {
-        if (is_null($value)) {
-            return new self(false, null);
-        }
-
-        /** @phpstan-ignore-next-line */
-        return new self(true, $value);
+        return new self(
+            ! is_null($value),
+            is_null($value) || is_null($type) ? $value : $type->coerce($value)
+        );
     }
 
     /**
@@ -57,15 +60,14 @@ final class Optional implements \Stringable
      *
      * @param  array<string, T>  $input
      * @param  TypeInterface<T>  $type
-     * @return Optional<T>|Optional<null>
+     * @return Optional<T|null>
      */
     public static function forOptionalArrayKey(array $input, string $key, TypeInterface $type): self
     {
-        if (! array_key_exists($key, $input)) {
-            return new self(false, null);
-        }
-
-        return new self(true, $type->coerce($input[$key]));
+        return new self(
+            array_key_exists($key, $input),
+            array_key_exists($key, $input) ? $type->coerce($input[$key]) : null
+        );
     }
 
     /**
@@ -106,11 +108,9 @@ final class Optional implements \Stringable
      */
     public function ifPresentOrElse(callable $callback, callable $default): void
     {
-        if ($this->isPresent()) {
-            $callback($this->value);
-        } else {
-            $default($this->value);
-        }
+        $this->isPresent()
+            ? $callback($this->value)
+            : $default($this->value);
     }
 
     /**
@@ -119,26 +119,22 @@ final class Optional implements \Stringable
      */
     public function filter(callable $callback): self
     {
-        if ($this->isEmpty()) {
-            return $this;
-        }
-
-        return $callback($this->value) ? $this : Optional::empty();
+        return $this->isEmpty()
+            ? $this
+            : ($callback($this->value) ? $this : Optional::empty());
     }
 
     /**
      * @template T
      *
      * @param  callable(Contents): T  $callback
-     * @return Optional<T>|Optional<null>
+     * @return Optional<T>|Optional<T|null>
      */
     public function map(callable $callback): self
     {
-        if ($this->isEmpty()) {
-            return new self(false, null);
-        }
-
-        return self::forNullable($callback($this->value));
+        return $this->isEmpty()
+            ? new self(false, null)
+            : self::forNullable($callback($this->value));
     }
 
     /**
