@@ -59,6 +59,7 @@ final class Optional implements \Stringable
      * @template T
      *
      * @param  array<string, T>  $input
+     * @param  string  $key
      * @param  TypeInterface<T>  $type
      * @return Optional<T|null>
      */
