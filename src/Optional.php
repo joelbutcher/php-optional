@@ -56,7 +56,6 @@ final class Optional implements \Stringable
      * @template T
      *
      * @param  array<string, T>  $input
-     * @param  string  $key
      * @param  TypeInterface<T>  $type
      * @return Optional<T>|Optional<null>
      */
@@ -180,7 +179,6 @@ final class Optional implements \Stringable
     }
 
     /**
-     * @param  callable|null  $callback
      * @return Contents
      *
      * @throws NoSuchElementException|Throwable
