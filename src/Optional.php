@@ -128,7 +128,7 @@ final class Optional implements \Stringable
      * @template T
      *
      * @param  callable(Contents): T  $callback
-     * @return Optional<T>|Optional<T|null>
+     * @return Optional<null>|Optional<T|null>
      */
     public function map(callable $callback): self
     {
